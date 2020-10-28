@@ -52,5 +52,34 @@ function Header() {
  * Live reload com webpack dev server.
 
 
-# Configurando o babel.
-[...]
+# Componentização.
+* Dividir pedaços da aplicação em partes menores.
+* Esses pedaços podem ser repetidos.
+* Componente é uma função que retorna um html ( JSX ).
+**index.js**
+```js
+import React from 'react'
+import { render } from 'react'
+```
+**App.js** ( 1º componente ).
+```js
+import React from 'react'
+import Header from './components/Header'
+
+export default function App() {
+ return <Header />
+}
+```
+**Header.js** ( 2º componente )
+```js
+import React from 'react'
+
+export default function Header() {
+ return (
+  <header>
+   <h1> Exemplo de header </h1>
+  </header>
+ )
+ 
+ }
+```
