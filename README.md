@@ -133,13 +133,55 @@ export default function Header({ title, children}) {
  }
 ```
 
-
-
-
-
-
-
-
-
-
 ## Estado e Imutabilidade.
+* Garante performance mesmo em aplicações com muitos dados.
+* É preciso informar a key ( chave única ) em operações de loop no react.
+* useState faz parte de API do react e é usado para controlar o estado.
+* useState retorna um array com duas posições a primeiro é o estado inicial que é informado no parâmetro da função
+a segunda é uma função que fica responsável por atualizar o estado.
+* o estado não deve ser alterado diretamente é preciso copiar o estado para outra variável para então setar o novo valor.
+* como foi feito aqui : setProjects([...projects, `Novo projeto ${Date.now()}`])
+
+
+**index.js**
+```js
+import React from 'react'
+import { render } from 'react'
+```
+**App.js** ( 1º componente ).
+```js
+import React, { useState } from 'react'
+import Header from './components/Header'
+
+export default function App() {
+ const [projects, setProjects] = useState(['Desenvolvimento de app', 'Front-end web'])
+ 
+ function handleAddProject() {
+  setProjects([...projects, `Novo projeto ${Date.now()}`])
+ }
+ 
+ return (
+ <>
+  <Header title="Projects" />
+  
+  <ul>
+   {projects.map(project => <li key={project}>{project}</li>)}
+  </ul>
+  
+  <button type="button" onClick={handleAddProject}>Adicionar projeto</button>
+ </>
+}
+```
+**Header.js** ( 2º componente )
+```js
+import React from 'react'
+
+export default function Header({ title}) {
+ return (
+  <header>
+   <h1>{title}</h1>
+  </header>
+ )
+ 
+ }
+```
