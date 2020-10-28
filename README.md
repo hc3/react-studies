@@ -52,7 +52,7 @@ function Header() {
  * Live reload com webpack dev server.
 
 
-# Componentização.
+## Componentização.
 * Dividir pedaços da aplicação em partes menores.
 * Esses pedaços podem ser repetidos.
 * Componente é uma função que retorna um html ( JSX ).
@@ -83,3 +83,63 @@ export default function Header() {
  
  }
 ```
+
+## Propriedades.
+* Informação que se deseja passar de um componente pai para um componente filho.
+* as propriedades vão vir como parametro da função do componente.
+* existe uma propriedade chamada children que retonar o conteúdo dentro do componente.
+
+**index.js**
+```js
+import React from 'react'
+import { render } from 'react'
+```
+**App.js** ( 1º componente ).
+```js
+import React from 'react'
+import Header from './components/Header'
+
+export default function App() {
+ return (
+ <>
+  <Header title="homePage">
+   <ul>
+    <li>HomePage</li>
+    <li>Projects</li>
+   </ul>
+  </Header>
+  <Header title="TestePage>
+   <ul>
+    <li>HomePage</li>
+    <li>Projects</li>
+   </ul>
+  </Header>
+ </>
+}
+```
+**Header.js** ( 2º componente )
+```js
+import React from 'react'
+
+export default function Header({ title, children}) {
+ return (
+  <header>
+   <h1>{title}</h1>
+   
+   { childen }
+  </header>
+ )
+ 
+ }
+```
+
+
+
+
+
+
+
+
+
+
+## Estado e Imutabilidade.
